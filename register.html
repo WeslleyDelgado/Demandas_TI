@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Novo Login - Painel de TI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Criação de Conta</h1>
+            <p>Registre um novo profissional de TI para acesso ao painel.</p>
+        </header>
+
+        <main>
+            <form id="register-form" class="card">
+                <div class="form-group">
+                    <label for="new-username">Novo Usuário</label>
+                    <input type="text" id="new-username" placeholder="Escolha um nome de usuário" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">Nova Senha</label>
+                    <input type="password" id="new-password" placeholder="Crie uma senha forte" required>
+                </div>
+
+                <p id="feedback-message" style="display: none;"></p>
+
+                <button type="submit" class="btn btn-primary">Registrar</button>
+                <p style="text-align: center; margin-top: 20px;">
+                    Já tem uma conta? <a href="login.html">Faça Login</a>
+                </p>
+            </form>
+        </main>
+    </div>
+
+    <script src="register.js"></script>
+</body>
+</html>

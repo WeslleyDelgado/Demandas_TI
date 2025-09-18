@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Nova Demanda de TI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Registrar Nova Demanda</h1>
+            <p>Descreva seu problema e nossa equipe de TI entrará em contato.</p>
+        </header>
+
+        <main>
+            <form id="demand-form" class="card">
+                <div class="form-group">
+                    <label for="name">Nome do Solicitante</label>
+                    <input type="text" id="name" placeholder="Digite seu nome completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail de Contato</label>
+                    <input type="email" id="email" placeholder="seu.email@empresa.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="department">Departamento</label>
+                    <input type="text" id="department" placeholder="Seu setor ou departamento" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoria do Problema</label>
+                    <select id="category" required>
+                        <option value="" disabled selected>Selecione a categoria</option>
+                        <option value="Formatação de Computador">Formatação de Computador</option>
+                        <option value="Problema de Hardware">Problema de Hardware (RAM, HD, etc.)</option>
+                        <option value="Instalação de Software">Instalação de Software</option>
+                        <option value="Problema de Rede/Internet">Problema de Rede/Internet</option>
+                        <option value="Sistema Operacional">Sistema Operacional (Windows, Linux)</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Descrição do Problema</label>
+                    <textarea id="description" rows="5" placeholder="Descreva o problema com o máximo de detalhes possível..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Demanda</button>
+            </form>
+        </main>
+    </div>
+
+    <div id="success-message" class="success-message">
+        Demanda registrada com sucesso!
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

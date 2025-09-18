@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração - Demandas de TI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Painel de Administração</h1>
+            <p>Gerencie as demandas registradas pelos usuários.</p>
+        </header>
+
+        <div class="admin-controls card">
+            <input type="text" id="search-input" placeholder="Pesquisar por nome ou categoria...">
+            <div class="filter-buttons">
+                <button class="btn btn-filter active" data-status="Todos">Todos</button>
+                <button class="btn btn-filter" data-status="Aberta">Aberta</button>
+                <button class="btn btn-filter" data-status="Em Progresso">Em Progresso</button>
+                <button class="btn btn-filter" data-status="Resolvida">Resolvida</button>
+            </div>
+        </div>
+
+        <main id="demand-list">
+            </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

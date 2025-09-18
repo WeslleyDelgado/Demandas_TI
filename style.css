@@ -1,0 +1,260 @@
+/* --- Variáveis Globais e Reset --- */
+:root {
+    --primary-color: #3b82f6; /* Azul */
+    --primary-hover-color: #2563eb;
+    --success-color: #10b981; /* Verde */
+    --background-color: #f9fafb;
+    --text-color: #4b5563;
+    --card-bg-color: #ffffff;
+    --border-color: #d1d5db;
+    --font-title: 'Poppins', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- Layout Principal --- */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: #1f2937;
+}
+
+/* --- Estilo de Card --- */
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Formulário --- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* --- Botões --- */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover-color);
+    transform: translateY(-2px);
+}
+
+/* --- Mensagem de Sucesso --- */
+.success-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--success-color);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+}
+
+.success-message.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 10px);
+}
+
+/* --- Painel de Admin --- */
+.admin-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+#search-input {
+    flex-grow: 1;
+}
+
+.filter-buttons .btn {
+    background-color: #e5e7eb;
+    color: var(--text-color);
+    margin-left: 10px;
+}
+
+.filter-buttons .btn.active,
+.filter-buttons .btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.demand-card {
+    background-color: var(--card-bg-color);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.demand-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.demand-card-header h3 {
+    font-family: var(--font-title);
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: white;
+}
+
+.status-Aberta { background-color: #f59e0b; } /* Ambar */
+.status-Em.Progresso { background-color: var(--primary-color); } /* Azul */
+.status-Resolvida { background-color: var(--success-color); } /* Verde */
+
+.demand-card-body p {
+    margin-bottom: 10px;
+}
+
+.demand-card-body strong {
+    color: #374151;
+}
+
+.demand-card-actions {
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    .admin-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .filter-buttons .btn {
+        margin: 5px;
+    }
+}
+/* style.css */
+
+/* ... todo o seu CSS anterior ... */
+
+.error-message {
+    color: #ef4444; /* Vermelho */
+    background-color: #fee2e2;
+    border: 1px solid #fca5a5;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* style.css */
+
+/* ... todo o seu CSS anterior ... */
+
+/* Estilos para mensagens de feedback dentro dos formulários */
+.error-message, .success-message-inline {
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.error-message {
+    background-color: #ef4444; /* Vermelho */
+}
+
+.success-message-inline {
+    background-color: #10b981; /* Verde */
+}
