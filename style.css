@@ -1,12 +1,22 @@
-/* --- Variáveis Globais e Reset --- */
+/* --- Variáveis Globais e Reset (COM A NOVA PALETA) --- */
 :root {
-    --primary-color: #3b82f6; /* Azul */
-    --primary-hover-color: #2563eb;
-    --success-color: #10b981; /* Verde */
-    --background-color: #f9fafb;
-    --text-color: #4b5563;
-    --card-bg-color: #ffffff;
-    --border-color: #d1d5db;
+    /* Sua nova paleta de cores */
+    --dark-space: #1f192f;
+    --deep-teal: #2d6073;
+    --seafoam-green: #65b8a6;
+    --light-mint: #b5e8c3;
+    --ivory-white: #f0f7da;
+    
+    /* Mapeamento para as funções do site */
+    --primary-color: var(--seafoam-green);
+    --primary-hover-color: var(--light-mint);
+    --primary-gradient: linear-gradient(135deg, var(--light-mint) 0%, var(--seafoam-green) 100%);
+    --success-color: #10b981; /* Mantendo um verde distinto para sucesso */
+    --background-color: var(--dark-space);
+    --text-color: var(--ivory-white);
+    --card-bg-color: rgba(45, 96, 115, 0.4); /* Teal com transparência */
+    --border-color: rgba(101, 184, 166, 0.3);
+    --border-card-color: rgba(101, 184, 166, 0.4);
     --font-title: 'Poppins', sans-serif;
     --font-body: 'Roboto', sans-serif;
 }
@@ -22,6 +32,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
+    background-attachment: fixed;
 }
 
 /* --- Layout Principal --- */
@@ -40,15 +51,19 @@ header h1 {
     font-family: var(--font-title);
     font-weight: 600;
     font-size: 2.5rem;
-    color: #1f2937;
+    color: var(--ivory-white); /* Texto principal claro */
 }
 
-/* --- Estilo de Card --- */
+/* --- Estilo de Card (COM EFEITO GLASSMORPHISM) --- */
 .card {
-    background-color: var(--card-bg-color);
-    border-radius: 12px;
+    background: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Suporte para Safari */
+    border: 1px solid var(--border-card-color);
+    border-radius: 16px; /* Bordas mais arredondadas */
     padding: 30px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    /* NOVO: Sombra CLARA para contrastar com o fundo escuro */
+    box-shadow: 0 8px 32px 0 rgba(181, 232, 195, 0.1);
 }
 
 /* --- Formulário --- */
@@ -60,10 +75,12 @@ header h1 {
     display: block;
     font-weight: 500;
     margin-bottom: 8px;
+    color: var(--light-mint);
 }
 
 input[type="text"],
 input[type="email"],
+input[type="password"],
 select,
 textarea {
     width: 100%;
@@ -73,13 +90,37 @@ textarea {
     font-size: 1rem;
     font-family: var(--font-body);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    color: var(--ivory-white); /* Texto dentro do input */
+    background-color: rgba(0, 0, 0, 0.2); /* Fundo sutil para os inputs */
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(240, 247, 218, 0.5); /* Placeholder com menos opacidade */
 }
 
 input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 0 0 3px rgba(101, 184, 166, 0.2);
 }
+
+/* Estilo para ícones dentro dos inputs */
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--border-color);
+}
+
+.input-with-icon input {
+    padding-left: 40px;
+}
+
 
 /* --- Botões --- */
 .btn {
@@ -93,21 +134,23 @@ input:focus, select:focus, textarea:focus {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
-    color: white;
+    background-image: var(--primary-gradient);
+    color: var(--dark-space); /* Texto escuro para contrastar com o botão claro */
+    font-weight: 600;
     width: 100%;
+    box-shadow: 0 4px 15px rgba(101, 184, 166, 0.2);
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-hover-color);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(101, 184, 166, 0.3);
 }
 
-/* --- Mensagem de Sucesso --- */
+/* --- Mensagens de Feedback --- */
 .success-message {
     position: fixed;
     top: 20px;
@@ -130,6 +173,24 @@ input:focus, select:focus, textarea:focus {
     transform: translate(-50%, 10px);
 }
 
+.error-message, .success-message-inline {
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.error-message {
+    background-color: #ef4444; /* Vermelho */
+}
+
+.success-message-inline {
+    background-color: var(--success-color); /* Verde */
+}
+
+
 /* --- Painel de Admin --- */
 .admin-controls {
     display: flex;
@@ -137,31 +198,44 @@ input:focus, select:focus, textarea:focus {
     align-items: center;
     margin-bottom: 30px;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 #search-input {
     flex-grow: 1;
+    min-width: 200px;
 }
 
 .filter-buttons .btn {
-    background-color: #e5e7eb;
-    color: var(--text-color);
+    background-color: rgba(45, 96, 115, 0.8);
+    color: var(--ivory-white);
     margin-left: 10px;
+    border: 1px solid var(--border-color);
 }
 
 .filter-buttons .btn.active,
 .filter-buttons .btn:hover {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--dark-space);
+    border-color: var(--primary-color);
 }
 
 .demand-card {
-    background-color: var(--card-bg-color);
+    background: var(--card-bg-color);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid var(--border-card-color);
     border-radius: 12px;
     padding: 25px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     border-left: 5px solid var(--primary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.demand-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(181, 232, 195, 0.15);
 }
 
 .demand-card-header {
@@ -169,32 +243,35 @@ input:focus, select:focus, textarea:focus {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .demand-card-header h3 {
     font-family: var(--font-title);
     font-weight: 600;
-    color: #1f2937;
+    color: var(--ivory-white);
 }
 
 .status-badge {
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.8rem;
-    font-weight: 500;
-    color: white;
+    font-weight: 600;
+    color: var(--dark-space);
+    text-shadow: none;
 }
 
-.status-Aberta { background-color: #f59e0b; } /* Ambar */
-.status-Em.Progresso { background-color: var(--primary-color); } /* Azul */
-.status-Resolvida { background-color: var(--success-color); } /* Verde */
+.status-Aberta { background-color: #f59e0b; }
+.status-Em\.Progresso { background-color: var(--light-mint); }
+.status-Resolvida { background-color: var(--seafoam-green); }
 
 .demand-card-body p {
     margin-bottom: 10px;
 }
 
 .demand-card-body strong {
-    color: #374151;
+    color: var(--light-mint);
 }
 
 .demand-card-actions {
@@ -204,6 +281,14 @@ input:focus, select:focus, textarea:focus {
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+.resolved-by {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-color);
+    font-size: 0.9em;
+    color: var(--seafoam-green);
 }
 
 /* --- Responsividade --- */
@@ -224,37 +309,173 @@ input:focus, select:focus, textarea:focus {
         margin: 5px;
     }
 }
-/* style.css */
-
-/* ... todo o seu CSS anterior ... */
-
-.error-message {
-    color: #ef4444; /* Vermelho */
-    background-color: #fee2e2;
-    border: 1px solid #fca5a5;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-/* style.css */
-
-/* ... todo o seu CSS anterior ... */
-
-/* Estilos para mensagens de feedback dentro dos formulários */
-.error-message, .success-message-inline {
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    text-align: center;
-    margin-bottom: 20px;
+.btn-delete {
+    background: transparent;
     border: none;
+    color: #ef4444; /* Vermelho para indicar perigo/exclusão */
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: auto; /* Joga o botão para a direita */
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.error-message {
+.btn-delete:hover {
+    background-color: rgba(239, 68, 68, 0.1); /* Um fundo vermelho bem sutil ao passar o mouse */
+    transform: scale(1.1);
+}
+/* Arquivo: style.css */
+
+/* --- Estilos para as Badges de Prioridade --- */
+.priority-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.priority-Urgente {
+    color: #fff;
     background-color: #ef4444; /* Vermelho */
 }
 
-.success-message-inline {
-    background-color: #10b981; /* Verde */
+.priority-Alta {
+    color: #fff;
+    background-color: #f97316; /* Laranja */
+}
+
+.priority-Média {
+    color: #fff;
+    background-color: #3b82f6; /* Azul que já usamos */
+}
+
+.priority-Baixa {
+    color: #fff;
+    background-color: #6b7280; /* Cinza */
+}
+/* Arquivo: style.css */
+
+/* --- Estilos para o Modal de Edição --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 600px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.modal-actions .btn {
+    width: auto;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--deep-teal);
+}
+/* Arquivo: style.css */
+/* Estilo para o botão de editar */
+.btn-edit {
+    background: transparent;
+    border: none;
+    color: var(--primary-hover-color); /* Verde claro */
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-edit:hover {
+    background-color: rgba(181, 232, 195, 0.1);
+    transform: scale(1.1);
+}
+/* Arquivo: style.css */
+
+/* --- Estilos para o Histórico de Comentários --- */
+.demand-card-comments {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.comments-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px; /* Altura máxima antes de criar uma barra de rolagem */
+    overflow-y: auto; /* Barra de rolagem automática */
+    margin-bottom: 15px;
+}
+
+.comment-item {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.comment-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8em;
+    color: var(--light-mint);
+    margin-bottom: 5px;
+}
+
+.comment-author {
+    font-weight: 600;
+}
+
+.comment-text {
+    font-size: 0.9em;
+    word-wrap: break-word; /* Garante que o texto quebre a linha se for muito longo */
+}
+
+.add-comment-form {
+    display: flex;
+    gap: 10px;
+}
+
+.add-comment-form input {
+    flex-grow: 1; /* Faz o input ocupar o máximo de espaço */
+    margin: 0;
+}
+
+.btn-add-comment {
+    width: auto;
+    padding: 10px 15px;
+    background-image: none; /* Remove o gradiente */
+    background-color: var(--seafoam-green);
+    color: var(--dark-space);
 }

@@ -17,38 +17,60 @@
         </header>
 
         <main>
-            <form id="demand-form" class="card">
-                <div class="form-group">
-                    <label for="name">Nome do Solicitante</label>
-                    <input type="text" id="name" placeholder="Digite seu nome completo" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">E-mail de Contato</label>
-                    <input type="email" id="email" placeholder="seu.email@empresa.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="department">Departamento</label>
-                    <input type="text" id="department" placeholder="Seu setor ou departamento" required>
-                </div>
-                <div class="form-group">
-                    <label for="category">Categoria do Problema</label>
-                    <select id="category" required>
-                        <option value="" disabled selected>Selecione a categoria</option>
-                        <option value="Formatação de Computador">Formatação de Computador</option>
-                        <option value="Problema de Hardware">Problema de Hardware (RAM, HD, etc.)</option>
-                        <option value="Instalação de Software">Instalação de Software</option>
-                        <option value="Problema de Rede/Internet">Problema de Rede/Internet</option>
-                        <option value="Sistema Operacional">Sistema Operacional (Windows, Linux)</option>
-                        <option value="Outros">Outros</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="description">Descrição do Problema</label>
-                    <textarea id="description" rows="5" placeholder="Descreva o problema com o máximo de detalhes possível..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Enviar Demanda</button>
-            </form>
-        </main>
+    <form id="demand-form" class="card">
+        <div class="form-group">
+            <label for="name">Nome do Solicitante</label>
+            <div class="input-with-icon">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="name" placeholder="Digite seu nome completo" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail de Contato</label>
+            <div class="input-with-icon">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="email" placeholder="seu.email@empresa.com" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="department">Departamento</label>
+            <div class="input-with-icon">
+                <i class="fa-solid fa-building"></i>
+                <input type="text" id="department" placeholder="Seu setor ou departamento" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="category">Categoria do Problema</label>
+            <select id="category" required>
+                <option value="" disabled selected>Selecione a categoria</option>
+                <option value="Formatação de Computador">Formatação de Computador</option>
+                <option value="Problema de Hardware">Problema de Hardware (RAM, HD, etc.)</option>
+                <option value="Instalação de Software">Instalação de Software</option>
+                <option value="Problema de Rede/Internet">Problema de Rede/Internet</option>
+                <option value="Sistema Operacional">Sistema Operacional (Windows, Linux)</option>
+                <option value="Outros">Outros</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="priority">Prioridade</label>
+            <select id="priority" required>
+                <option value="" disabled selected>Selecione o nível de urgência</option>
+                <option value="Baixa">Baixa</option>
+                <option value="Média">Média</option>
+                <option value="Alta">Alta</option>
+                <option value="Urgente">Urgente</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="description">Descrição do Problema</label>
+            <textarea id="description" rows="5" placeholder="Descreva o problema com o máximo de detalhes possível..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-paper-plane"></i> Enviar Demanda
+        </button>
+    </form>
+</main>
     </div>
 
     <div id="success-message" class="success-message">

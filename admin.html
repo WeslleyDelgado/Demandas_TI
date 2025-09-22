@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de Administração - Demandas de TI</title>
@@ -8,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <div class="container">
@@ -30,6 +33,49 @@
             </main>
     </div>
 
+    <div id="edit-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content card">
+            <h2>Editar Demanda</h2>
+            <form id="edit-form">
+                <input type="hidden" id="edit-demand-id">
+
+                <div class="form-group">
+                    <label for="edit-name">Nome do Solicitante</label>
+                    <input type="text" id="edit-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-category">Categoria do Problema</label>
+                    <select id="edit-category" required>
+                        <option value="Formatação de Computador">Formatação de Computador</option>
+                        <option value="Problema de Hardware">Problema de Hardware</option>
+                        <option value="Instalação de Software">Instalação de Software</option>
+                        <option value="Problema de Rede/Internet">Problema de Rede/Internet</option>
+                        <option value="Sistema Operacional">Sistema Operacional</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-priority">Prioridade</label>
+                    <select id="edit-priority" required>
+                        <option value="Baixa">Baixa</option>
+                        <option value="Média">Média</option>
+                        <option value="Alta">Alta</option>
+                        <option value="Urgente">Urgente</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-description">Descrição do Problema</label>
+                    <textarea id="edit-description" rows="5" required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancel-edit" class="btn btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="admin.js"></script>
-</body>
+    
+    </body>
 </html>
